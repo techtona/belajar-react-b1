@@ -31,3 +31,7 @@
     transform: rotate(360deg);
   }
 }
+
+.miring {
+  transform: rotate(45deg);
+}
