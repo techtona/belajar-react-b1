@@ -45,11 +45,21 @@ const styles = theme => ({
 });
 
 class HotelCard extends React.Component {
-    state = { expanded: false };
+    state = { expanded: false , favorite : 'default'};
 
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
+
+    handleFavorite = () => {
+        if (this.state.favorite === 'secondary'){
+            this.state.favorite = 'default';
+        }else{
+            this.state.favorite = 'secondary';
+        }
+        this.setState({favorite : this.state.favorite});
+        console.log(this.state.favorite);
+    }
 
     render() {
         const { classes } = this.props;
@@ -81,8 +91,8 @@ class HotelCard extends React.Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
-                    <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon onClick={this.props.favoriteClicked} color={this.props.btnColor} />
+                    <IconButton onClick={this.handleFavorite} aria-label="Add to favorites">
+                        <FavoriteIcon  color={this.state.favorite} />
                     </IconButton>
                     <IconButton aria-label="Share">
                         <ShareIcon />
